@@ -1,6 +1,5 @@
 import express from 'express';
 import featureRoutes from './features';
-import bullBoard from './core/redis/bullboard';
 import Redis from './core/redis';
 import { APP_PORT } from './config/constants';
 
@@ -10,7 +9,6 @@ import { APP_PORT } from './config/constants';
     await redis.connect();
     const app = express();
     app.use('/feature', featureRoutes);
-    app.use('/bullmq/queues', bullBoard);
     app.get("/", async (req, res) => {
         res.status(200).send("Welcome to Nodejs-redis home page");
     });
